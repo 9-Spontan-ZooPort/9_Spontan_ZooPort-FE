@@ -14,7 +14,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${poppins.variable} ${girrafe.variable}`}>
+			<body
+				className={`${poppins.className} ${poppins.variable} ${girrafe.variable}`}
+			>
 				{children}
 			</body>
 		</html>
