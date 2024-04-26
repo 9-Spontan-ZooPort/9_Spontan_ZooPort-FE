@@ -17,7 +17,11 @@ export default function RootLayout({
 			<body
 				className={`${poppins.className} ${poppins.variable} ${girrafe.variable}`}
 			>
-				{children}
+				<div className="flex min-h-screen justify-center">
+					<div className="w-[390px] border-border border-x-2 justify-center flex">
+						{children}
+					</div>
+				</div>
 			</body>
 		</html>
 	);
