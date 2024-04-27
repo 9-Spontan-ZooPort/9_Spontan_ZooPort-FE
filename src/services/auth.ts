@@ -1,7 +1,7 @@
 "use server";
 export async function login(email: string, password: string) {
 	try {
-		const response = await fetch("http://localhost:8080/v1/auth/login", {
+		const response = await fetch(`${process.env.API_URL}/auth/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -32,11 +32,11 @@ export async function register(
 	role: "admin" | "zookeeper",
 ) {
 	try {
-		const response = await fetch("http://localhost:8080/v1/auth/register", {
+		const response = await fetch(`${process.env.API_URL}/auth/register`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				Superadmin: "superadmin",
+				Superadmin: process.env.SUPERADMIN_API_KEY || "",
 			},
 			body: JSON.stringify({ name, email, password, role }),
 			mode: "no-cors",
