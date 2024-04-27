@@ -25,7 +25,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { goDashboard } from "@/lib/actions";
+import type { Animal } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { createAnimal } from "@/services/animal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon, CornerUpLeft } from "lucide-react";
@@ -56,16 +58,22 @@ const steps: StepProp[] = [
 ];
 
 const CreateSchema = z.object({
-	nama: z.string(),
-	asal: z.string(),
-	nama_panggilan: z.string(),
-	tanggal_lahir: z.date(),
+	nama: z.string().min(1, "Nama hewan tidak boleh kosong"),
+	asal: z.string().min(1, "Asal hewan tidak boleh kosong"),
+	nama_panggilan: z.string().min(1, "Nama panggilan hewan tidak boleh kosong"),
+	tanggal_lahir: z
+		.date()
+		.max(new Date(), "Tanggal lahir tidak boleh lebih dari hari ini"),
 	jenis_kelamin: z.enum(["jantan", "betina"]),
-	habitat: z.string(),
-	tanggal_masuk: z.date(),
-	status_konservasi: z.string(),
-	deskripsi: z.string(),
-	foto: z.string(),
+	habitat: z.string().min(1, "Habitat hewan tidak boleh kosong"),
+	tanggal_masuk: z
+		.date()
+		.max(new Date(), "Tanggal masuk tidak boleh lebih dari hari ini"),
+	status_konservasi: z
+		.string()
+		.min(1, "Status konservasi hewan tidak boleh kosong"),
+	deskripsi: z.string().min(1, "Deskripsi hewan tidak boleh kosong"),
+	foto: z.string().min(1, "Foto hewan tidak boleh kosong"),
 });
 
 export default function FormAnimal() {
@@ -87,8 +95,28 @@ export default function FormAnimal() {
 		},
 	});
 
-	const submit = (data: z.infer<typeof CreateSchema>) => {
-		console.log(data);
+	const submit = async (data: z.infer<typeof CreateSchema>) => {
+		const animal: Animal = {
+			speciesId: data.nama,
+			nickname: data.nama_panggilan,
+			birthdate: data.tanggal_lahir,
+			gender: data.jenis_kelamin,
+			weight: 1000,
+			photo: data.foto,
+			health: data.status_konservasi,
+			description: data.deskripsi,
+		};
+
+		const response = await createAnimal(animal);
+
+		if (response.error) {
+			return form.setError("nama", {
+				type: "manual",
+				message: "Gagal menyimpan data",
+			});
+		}
+
+		goDashboard();
 	};
 
 	function decrementIndex() {

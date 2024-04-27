@@ -34,8 +34,10 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { goHome } from "@/lib/actions";
+import { goDashboard, goHome } from "@/lib/actions";
+import type { Report } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { createReport } from "@/services/report";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import {
@@ -87,11 +89,11 @@ const steps: StepProp[] = [
 ];
 
 const ReportSchema = z.object({
-	spesies: z.string(),
-	animal_id: z.string(),
-	deskripsi: z.string().max(65535),
+	spesies: z.string().min(1, "Spesies tidak boleh kosong"),
+	animal_id: z.string().min(1, "Hewan tidak boleh kosong"),
+	deskripsi: z.string().max(65535).min(1, "Deskripsi tidak boleh kosong"),
 	kondisi_saat_ini: z.enum(["sehat", "sakit", "pemulihan", "kronis"]),
-	foto: z.string(),
+	foto: z.string().url("Foto harus berupa URL"),
 });
 
 export default function AnimalReport() {
@@ -109,7 +111,23 @@ export default function AnimalReport() {
 	});
 
 	const submit = async (data: z.infer<typeof ReportSchema>) => {
-		console.log(data);
+		const report: Report = {
+			animal_id: data.animal_id,
+			description: data.deskripsi,
+			is_request_doctor: true,
+			photo_url: data.foto,
+		};
+
+		const response = await createReport(report);
+
+		if (response.error) {
+			return form.setError("animal_id", {
+				type: "manual",
+				message: "Gagal mengirimkan laporan",
+			});
+		}
+
+		goDashboard();
 	};
 
 	return (
