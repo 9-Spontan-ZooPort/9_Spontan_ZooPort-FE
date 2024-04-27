@@ -1,5 +1,4 @@
 "use client";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -13,8 +12,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EyeIcon, LockKeyholeOpenIcon, MailIcon } from "lucide-react";
+import { EyeIcon, EyeOff, LockKeyholeOpenIcon, MailIcon } from "lucide-react";
 import Link from "next/dist/client/link";
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -56,6 +56,8 @@ function LoginForm() {
 		console.log(data);
 	}
 
+	const [showPassword, setShowPassword] = React.useState(false);
+
 	return (
 		<Form {...form}>
 			<form
@@ -93,10 +95,11 @@ function LoginForm() {
 									<Input
 										className="text-c2 font-regular"
 										placeholder="Masukkan password"
-										type="password"
+										type={showPassword ? "text" : "password"}
 										{...field}
 										startIcon={LockKeyholeOpenIcon}
-										endIcon={EyeIcon}
+										endIcon={[EyeIcon, EyeOff]}
+										onEndIconClick={() => setShowPassword(!showPassword)}
 									/>
 								</FormControl>
 								<FormMessage />
