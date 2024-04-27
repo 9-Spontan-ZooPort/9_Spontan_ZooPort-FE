@@ -35,7 +35,6 @@ import Link from "next/link";
 import { type Dispatch, type SetStateAction, useState } from "react";
 import { type UseFormReturn, useForm } from "react-hook-form";
 import { z } from "zod";
-import FormAnimalTwo from "../create2/page";
 
 type StepProp = {
 	index: number;
