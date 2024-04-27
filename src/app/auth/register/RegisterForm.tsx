@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { goHome } from "@/lib/actions";
+import { goHome, goLogin } from "@/lib/actions";
 import { register } from "@/services/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -59,7 +59,7 @@ export function RegisterForm() {
 			});
 		}
 
-		goHome();
+		goLogin();
 	}
 
 	const [showPassword, setShowPassword] = React.useState(false);
@@ -174,7 +174,7 @@ export function RegisterForm() {
 
 				<Button
 					type="submit"
-					className="mt-8 w-80 h-9 p-2 bg-lime-900 text-white text-center hover:bg-lime-700"
+					className="mt-8 mb-12 w-80 h-9 p-2 bg-lime-900 text-white text-center hover:bg-lime-700"
 				>
 					Daftar
 				</Button>
