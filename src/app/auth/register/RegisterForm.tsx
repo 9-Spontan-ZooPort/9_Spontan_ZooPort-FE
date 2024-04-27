@@ -155,7 +155,7 @@ export function RegisterForm() {
 										<FormControl>
 											<RadioGroupItem value="admin" />
 										</FormControl>
-										<FormLabel className="text-stone-900 text-c1 font-medium ">
+										<FormLabel className="text-stone-900 text-c1 font-medium">
 											Admin
 										</FormLabel>
 									</FormItem>
@@ -176,7 +176,6 @@ export function RegisterForm() {
 					type="submit"
 					className="mt-8 mb-12 w-80 h-9 p-2 bg-lime-900 text-white text-center hover:bg-lime-700"
 				>
-					{" "}
 					Daftar
 				</Button>
 			</form>
