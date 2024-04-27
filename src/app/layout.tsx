@@ -18,9 +18,7 @@ export default function RootLayout({
 				className={`${poppins.className} ${poppins.variable} ${girrafe.variable}`}
 			>
 				<div className="flex min-h-screen justify-center">
-					<div className="w-[390px] border-border border-x-2 justify-center flex">
-						{children}
-					</div>
+					<div className="w-[390px] justify-center flex">{children}</div>
 				</div>
 			</body>
 		</html>
