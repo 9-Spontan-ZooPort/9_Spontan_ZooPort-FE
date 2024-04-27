@@ -10,7 +10,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { goHome } from "@/lib/actions";
+import { goDashboard } from "@/lib/actions";
 import { login } from "@/services/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOff, LockKeyholeOpenIcon, MailIcon } from "lucide-react";
@@ -46,7 +46,7 @@ export function LoginForm() {
 		localStorage.setItem("token", response.data.token);
 		localStorage.setItem("user", response.data.id);
 
-		goHome();
+		goDashboard();
 	};
 
 	const [showPassword, setShowPassword] = React.useState(false);
@@ -123,7 +123,7 @@ export function LoginForm() {
 
 				<Button
 					type="submit"
-					className="mt-8 w-80 h-9 p-2 bg-lime-900 text-white text-center hover:bg-lime-700"
+					className="mt-8 mb-12 w-80 h-9 p-2 bg-lime-900 text-white text-center hover:bg-lime-700"
 				>
 					Mulai
 				</Button>

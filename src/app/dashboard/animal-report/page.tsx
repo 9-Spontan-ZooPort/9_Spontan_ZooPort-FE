@@ -434,7 +434,7 @@ function Page({
 									{index === 3 && (
 										<Button
 											variant="outline"
-											className="w-full mt-10"
+											className="w-full mt-10 mb-12"
 											onClick={incrementIndex}
 										>
 											<p className="text-c1 font-medium">Lanjut</p>
@@ -445,7 +445,7 @@ function Page({
 											<DialogTrigger className="w-full">
 												<Button
 													variant="outline"
-													className="w-full mt-10"
+													className="w-full mt-10 mb-12"
 													type="submit"
 												>
 													<p className="text-c1 font-medium">Kirim</p>
