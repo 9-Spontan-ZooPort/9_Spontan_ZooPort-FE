@@ -93,6 +93,7 @@ const config = {
 			p3: "12px",
 			c1: "12px",
 			c2: "11px",
+			c3: "9px",
 		},
 	},
 	plugins: [require("tailwindcss-animate")],
