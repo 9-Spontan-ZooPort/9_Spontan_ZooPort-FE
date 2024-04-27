@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/sheet";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import CustomCard from "@/components/ui/customCard";
 import { Separator } from "@/components/ui/separator";
 import { goHome } from "@/lib/actions";
 import { decodeJwt } from "@/lib/jwt";
@@ -214,21 +215,7 @@ export default async function Dashboard() {
 			<p className="text-p2 font-semibold">Pilih Hewan yang Diperiksa</p>
 			<div className="flex flex-row flex-wrap gap-x-2 justify-between">
 				{species.map((s): React.ReactNode => {
-					return (
-						<div
-							key={s.id}
-							className=" flex flex-col p-2 gap-2 bg-neutral-600 rounded-lg hover:cursor-pointer mb-4 shadow-md shadow-black/70"
-						>
-							<Image
-								src="/dummy_animal.png"
-								alt="Animal"
-								width={134}
-								height={113}
-								// objectFit="contain"
-							/>
-							<p className="text-p3 font-semibold"> {s.name} </p>
-						</div>
-					);
+					return <CustomCard key={s.id} title={s.name} />;
 				})}
 			</div>
 

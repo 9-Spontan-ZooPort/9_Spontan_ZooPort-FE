@@ -10,7 +10,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { goHome } from "@/lib/actions";
+import { goDashboard } from "@/lib/actions";
 import { login } from "@/services/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOff, LockKeyholeOpenIcon, MailIcon } from "lucide-react";
@@ -46,7 +46,7 @@ export function LoginForm() {
 		localStorage.setItem("token", response.data.token);
 		localStorage.setItem("user", response.data.id);
 
-		goHome();
+		goDashboard();
 	};
 
 	const [showPassword, setShowPassword] = React.useState(false);
@@ -63,10 +63,12 @@ export function LoginForm() {
 					render={({ field }) => {
 						return (
 							<FormItem>
-								<FormLabel className="text-c1 font-medium">Email</FormLabel>
+								<FormLabel className="text-stone-900 text-c1">
+									Alamat Email
+								</FormLabel>
 								<FormControl>
 									<Input
-										className="text-c2 font-regular"
+										className="font-regular text-stone-900 text-c2 bg-accent border border-stone-900 w-80 h-10"
 										placeholder="Masukkan email"
 										{...field}
 										startIcon={MailIcon}
@@ -83,10 +85,12 @@ export function LoginForm() {
 					render={({ field }) => {
 						return (
 							<FormItem>
-								<FormLabel className="text-c1 font-medium">Password</FormLabel>
+								<FormLabel className="text-stone-900 text-c1 font-medium">
+									Password
+								</FormLabel>
 								<FormControl>
 									<Input
-										className="text-c2 font-regular"
+										className="font-regular text-stone-900 text-c2 bg-accent border border-stone-900 w-80 h-10"
 										placeholder="Masukkan password"
 										type={showPassword ? "text" : "password"}
 										{...field}
@@ -105,20 +109,23 @@ export function LoginForm() {
 						<Checkbox id="ingatSaya" />
 						<label
 							htmlFor="ingatSaya"
-							className="text-c2 font-regular leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+							className="text-stone-900 text-c2 font-regular leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 						>
 							Ingat saya
 						</label>
 					</div>
 					<Link href="/">
-						<p className="text-c2 font-semibold hover:underline">
+						<p className="text-stone-900 text-c2 font-semibold hover:underline">
 							Lupa password?
 						</p>
 					</Link>
 				</div>
 
-				<Button type="submit" className="w-full mt-8">
-					<p className="text-c1 font-medium">Mulai</p>
+				<Button
+					type="submit"
+					className="mt-8 mb-12 w-80 h-9 p-2 bg-lime-900 text-white text-center hover:bg-lime-700"
+				>
+					Mulai
 				</Button>
 			</form>
 		</Form>

@@ -9,3 +9,21 @@ export type Species = {
 	name: string;
 	class: string;
 };
+
+export type Animal = {
+	speciesId: string;
+	nickname: string;
+	birthdate: Date;
+	gender: string;
+	weight: number;
+	photo: string;
+	health: string;
+	description: string;
+};
+
+export type Report = {
+	description: string;
+	photo_url: string;
+	is_request_doctor: boolean;
+	animal_id: string;
+};

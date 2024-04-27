@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ZooPort
 
-## Getting Started
+![Logo App](https://raw.githubusercontent.com/9-Spontan-ZooPort/9_Spontan_ZooPort-FE/dev/public/LogoZooPort1.svg)
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Upaya meningkatkan pelestarian hewan dan perhatian khusus terhadap kesehatan hewan di Kebun Binatang Surabaya menjadi suatu kebutuhan mendesak. Dengan web ini, diharapkan para penjaga kebun binatang di Surabaya dapat memberikan informasi terbaru mengenai kondisi hewan dengan jelas, sehingga menghindari penelantaran hewan akibat ketiadaan sistem yang mendukung. Selain itu, platform ini juga menghubungkan pihak kebun binatang dengan dokter hewan, sehingga ketika ada hewan yang sakit, penanganan dapat dilakukan dengan segera.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Frontend:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Next.js](https://nextjs.org)
+- [Tailwind CSS](https://tailwindcss.com)
+- [ShadcnUI](https://ui.shadcnui.com)
+- [Typescript](https://https://www.typescriptlang.org)
 
-## Learn More
+Backend:
 
-To learn more about Next.js, take a look at the following resources:
+- [Go](https://go.dev)
+- [PostgreSQL](https://https://www.postgresql.org/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Team Member
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Rizkyka Atila Zakiya (Hustler)
+- Pande Gede Natha Satvika (Hipster)
+- I Putu Natha Kusuma (Hacker)
+- Nugraha Billy Viandy (Hacker)
+- Cut Risfa Zuhra (Hacker)
 
-## Deploy on Vercel
+## Useful Links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Repository Backend](https://ahargunyllib.tech)
+- [Live Website](https://zooport.netlify.app/)
