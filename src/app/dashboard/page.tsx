@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -7,7 +9,9 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
-
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import {
 	Sheet,
 	SheetClose,
@@ -18,15 +22,6 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@/components/ui/sheet";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import CustomCard from "@/components/ui/customCard";
-import { Separator } from "@/components/ui/separator";
-import { goHome } from "@/lib/actions";
-import { decodeJwt } from "@/lib/jwt";
-import { getItem } from "@/lib/localStorage";
-import type { Species, User } from "@/lib/types";
-import { getSpecies } from "@/services/species";
 import {
 	ClipboardList,
 	Facebook,
@@ -39,210 +34,233 @@ import {
 	Settings,
 	Twitter,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import logout from "./logout";
 
-export default async function Dashboard() {
-	const species: Species[] = await getSpecies();
+export default function Home() {
+	const listHewan = [
+		{
+			image: "/Hewan(1).svg",
+			title: "Burung Hantu",
+			subTitle: "Eunectes murinus",
+		},
+		{
+			image: "/Hewan(8).svg",
+			title: "Harimau Putih",
+			subTitle: "Panthera tigris",
+		},
+		{
+			image: "/Hewan(7).svg",
+			title: "Beruang",
+			subTitle: "Paradisaeidae apoda",
+		},
+		{
+			image: "/Hewan(4).svg",
+			title: "Monyet",
+			subTitle: "Elephas maximus",
+		},
+		{
+			image: "/Hewan(5).svg",
+			title: "Kuda Nil",
+			subTitle: "Varanus komodoensis",
+		},
+		{
+			image: "/Hewan(6).svg",
+			title: "Kancil",
+			subTitle: "Conolophus subcristatus",
+		},
+		{
+			image: "/Hewan(2).svg",
+			title: "Ular",
+			subTitle: "Serpentes ",
+		},
+		{
+			image: "/Hewan(3).svg",
+			title: "Serigala",
+			subTitle: "Canis lupus",
+		},
+	];
 
 	return (
-		<div className="flex flex-col gap-4 w-full px-9 py-14">
-			<div className="w-full flex flex-row justify-between ">
-				<Sheet>
-					<SheetTrigger asChild>
-						<Button className="-ml-[17.5px]">
-							<Menu />
-						</Button>
-					</SheetTrigger>
-					<SheetContent side="left" className="pt-14">
+		<div className="w-full flex items-start">
+			<div className="w-[390px] h-[191px] bg-accent rounded-bl-[60px] rounded-br-[60px]">
+				<div className="ml-8 mt-5 mr-3">
+					<div className="w-full flex flex-row justify-between mt-10">
+						<Sheet>
+							<SheetTrigger asChild>
+								<Button className="-ml-[17.5px]">
+									<Menu />
+								</Button>
+							</SheetTrigger>
+							<SheetContent side="left" className="pt-14 bg-accent">
+								<SheetHeader>
+									<div className="flex flex-row gap-4 justify-start items-center">
+										<img src="/LogoZooPort3.svg" alt="CN" />
+									</div>
+								</SheetHeader>
+								<div className="flex flex-col pt-10">
+									<div className="flex flex-col gap-8">
+										<div className="flex flex-row gap-4">
+											<HomeIcon />
+											<p className="text-h9 font-medium">Dashboard</p>
+										</div>
+										<Separator />
+										<div className="flex flex-row gap-4">
+											<PawPrint />
+											<p className="text-h9 font-medium">Animal Check</p>
+										</div>
+										<div className="flex flex-row gap-4">
+											<FileCheck2 />
+											<p className="text-h9 font-medium">Animal List</p>
+										</div>
+										<div className="flex flex-row gap-4">
+											<ClipboardList />
+											<p className="text-h9 font-medium">My Report</p>
+										</div>
+										<Separator />
+										<div className="flex flex-row gap-4">
+											<Settings />
+											<p className="text-h9 font-medium">Settings</p>
+										</div>
+									</div>
+								</div>
+								<SheetFooter className="h-max pt-32">
+									<SheetClose asChild>
+										<Button
+											type="submit"
+											className="mt-8 w-60 h-9 p-2 bg-lime-900 text-white text-center hover:bg-lime-700"
+										>
+											Log out
+										</Button>
+									</SheetClose>
+								</SheetFooter>
+							</SheetContent>
+						</Sheet>
+						<Search className="cursor-pointer mt-1 mr-5" />
+					</div>
+
+					<h1 className="text-stone-900 text-h7 font-semibold mt-6">
+						Hi Natha Kusuma
+					</h1>
+					<p className="text-p3 text-stone-900 mb-5">Good Morning!</p>
+
+					<Carousel className="w-full max-w-xs">
+						<CarouselContent>
+							{Array.from({ length: 5 }).map((_, index) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+								<CarouselItem key={index}>
+									<div>
+										<Card>
+											<CardContent className="flex items-center justify-center p-6">
+												<img
+													src="/imageHome2 (2).svg"
+													alt="img"
+													className="w-full"
+												/>
+											</CardContent>
+										</Card>
+									</div>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+						<CarouselPrevious />
+						<CarouselNext />
+					</Carousel>
+
+					<p className="text-stone-900 text-p2 font-semibold my-4">
+						Categories
+					</p>
+					<div className="grid grid-cols-4">
+						<Link
+							href="/dashboard/animal-report"
+							className="flex flex-col items-center cursor-pointer "
+						>
+							<PawPrint size="60px" />
+							<p className="text-c2 font-medium">Animal Check</p>
+						</Link>
+						<Link
+							href="/dashboard/animal-list"
+							className="flex flex-col items-center ml-3 cursor-pointer"
+						>
+							<FileCheck2 size="60px" />
+							<p className="text-c2 font-medium">Animal List</p>
+						</Link>
+						<Link
+							href="/dashboard/report"
+							className="flex flex-col items-center ml-3 cursor-pointer"
+						>
+							<ClipboardList size="60px" />
+							<p className="text-c2 font-medium">My Report</p>
+						</Link>
+					</div>
+
+					<p className="text-stone-900 text-p2 font-semibold my-4">
+						Pengamanan dan Prosedur Darurat
+					</p>
+					<div className="w-80 h-[139px] px-[11px] py-2.5 bg-accent rounded-[10px] flex-row justify-start items-start gap-2 inline-flex">
+						<img src="/imageHome.svg" alt="img" />
+						<div className="flex flex-col">
+							<p className="text-c2 font-semibold mb-2">
+								Pelatihan Simulasi Darurat Secara Berkala untuk Pawang Harimau.
+							</p>
+							<p className="text-c3 font-reguler">
+								Pegawai harus dilatih untuk menangani hewan dengan aman dan
+								efektif dalam situasi darurat
+							</p>
+						</div>
+					</div>
+					<div className="flex flex-row justify-between my-4">
+						<p className="text-stone-900 text-p2 font-semibold ">
+							{" "}
+							Pilih Hewan yang Diperiksa{" "}
+						</p>
+						<p className="text-c2 font-medium mr-6">See all</p>
+					</div>
+
+					<div className="grid grid-cols-2">
+						{listHewan.map((d, index) => (
+							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+							<div key={index} className="text-blue-50">
+								<div className="border w-[150px] h-[172px] p-2 bg-accent shadow gap-2 rounded-[10px] mb-2">
+									<img src={d.image} alt="profile" className="" />
+									<div className="text-p3 text-stone-900 font-semibold">
+										{d.title}
+									</div>
+									<div className="text-c3 text-stone-900 font-semibold">
+										{d.subTitle}
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+				<footer className="bg-accent">
+					<div className="ml-8 mt-5 mr-3">
 						<SheetHeader>
-							<div className="flex flex-row gap-4 justify-start items-center">
-								<Avatar className="h-10 w-10">
-									<AvatarImage src="https://github.com/shadcn.png" />
-									<AvatarFallback>CN</AvatarFallback>
-								</Avatar>
-								<p className="text-h5">Testing</p>
+							<div className="flex flex-row gap-4 justify-start items-center mb-2 mt-4">
+								<img src="/LogoZooPort3.svg" alt="CN" />
 							</div>
 						</SheetHeader>
-						<div className="flex flex-col pt-10">
-							<div className="flex flex-col gap-8">
-								<Button
-									variant="link"
-									className="justify-start p-0 m-0 items-center"
-								>
-									<div className="flex flex-row gap-4">
-										<HomeIcon />
-										<Link href="/dashboard">
-											<p className="text-h9 font-medium">Dashboard</p>
-										</Link>
-									</div>
-								</Button>
-								<Separator />
-								<Button
-									variant="link"
-									className="justify-start p-0 m-0 items-center"
-								>
-									<div className="flex flex-row gap-4">
-										<PawPrint />
-										<Link href="/dashboard/animal-report">
-											<p className="text-h9 font-medium">Animal Check</p>
-										</Link>
-									</div>
-								</Button>
-								<Button
-									variant="link"
-									className="justify-start p-0 m-0 items-center"
-								>
-									<div className="flex flex-row gap-4">
-										<FileCheck2 />
-										<Link href="/dashboard/animal-list">
-											<p className="text-h9 font-medium">Animal List</p>
-										</Link>
-									</div>
-								</Button>
-								<Button
-									variant="link"
-									className="justify-start p-0 m-0 items-center"
-								>
-									<div className="flex flex-row gap-4">
-										<ClipboardList />
-										<Link href="/dashboard/report">
-											<p className="text-h9 font-medium">My Reports</p>
-										</Link>
-									</div>
-								</Button>
-								<Separator />
-								<Button
-									variant="link"
-									className="justify-start p-0 m-0 items-center"
-								>
-									<div className="flex flex-row gap-4">
-										<Settings />
-										<p className="text-h9 font-medium">Settings</p>
-									</div>
-								</Button>
-							</div>
+						<Separator className="mb-4" />
+						<h2 className="text-c1 font-medium mb-2">
+							PT. ZooPort Makmur Tbk.
+						</h2>
+						<p className="text-c2 font-reguler mb-2">
+							2401 N. Lincoln Blvd., Room 206 Jakarta Pusat, 73105
+						</p>
+						<h1 className="text-c1 font-medium mb-2">Contact Us</h1>
+						<div className="flex flex-row mb-5 gap-2">
+							<Facebook />
+							<Twitter />
+							<Instagram />
 						</div>
-						<SheetFooter className="h-max pt-16">
-							<SheetClose asChild>
-								<Button
-									variant="link"
-									className="justify-center p-0 m-0 items-center w-full"
-									onClick={logout}
-								>
-									<p className="text-h9 font-medium">Logout</p>
-								</Button>
-							</SheetClose>
-						</SheetFooter>
-					</SheetContent>
-				</Sheet>
-				<Search className="cursor-pointer" />
-			</div>
-
-			<p className="text-h6 font-semibold">Welcome!</p>
-
-			<Carousel className="w-full max-w-xs">
-				<CarouselContent>
-					{Array.from({ length: 5 }).map((_, index) => (
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-						<CarouselItem key={index}>
-							<Card className="border-0">
-								<CardContent className="p-0 flex aspect-video items-center justify-center">
-									<Image
-										src="/dummy_banner.png"
-										alt="Banner"
-										width={320}
-										height={180}
-									/>
-								</CardContent>
-							</Card>
-						</CarouselItem>
-					))}
-				</CarouselContent>
-				<CarouselPrevious />
-				<CarouselNext />
-			</Carousel>
-
-			<p className="text-p2 font-semibold">Categories</p>
-			<div className="flex flex-row gap-4 justify-between">
-				<Link href="/dashboard/animal-report">
-					<div className="flex flex-col gap-2 justify-center items-center">
-						<div className="p-2 bg-neutral-400 rounded-sm h-16 w-16 flex justify-center items-center">
-							<PawPrint className="h-10 w-10" />
+						<Separator className="mb-4" />
+						<div className="flex flex-col jus">
+							<h2 className="text-c1 font-medium mb-2">Join our newsletter.</h2>
+							<p className="text-c2 font-reguler mb-2">Enter email address</p>
 						</div>
-						<p className="text-c2 font-medium">Animal Check</p>
 					</div>
-				</Link>
-				<Link href="/dashboard/animal-list">
-					<div className="flex flex-col gap-2 justify-center items-center">
-						<div className="p-2 bg-neutral-400 rounded-sm h-16 w-16 flex justify-center items-center">
-							<FileCheck2 className="h-10 w-10" />
-						</div>
-						<p className="text-c2 font-medium">Animal List</p>
-					</div>
-				</Link>
-				<Link href="/dashboard/report">
-					<div className="flex flex-col gap-2 justify-center items-center">
-						<div className="p-2 bg-neutral-400 rounded-sm h-16 w-16 flex justify-center items-center">
-							<ClipboardList className="h-10 w-10" />
-						</div>
-						<p className="text-c2 font-medium">Report</p>
-					</div>
-				</Link>
+				</footer>
 			</div>
-
-			<p className="text-p2 font-semibold">Pengamanan dan Prosedur Darurat</p>
-			<div className="flex flex-row gap-4 p-2 bg-neutral-300 rounded-md">
-				<Image
-					src="/dummy_poster.png"
-					alt="Banner"
-					width={135}
-					height={119}
-					// objectFit="fill"
-				/>
-				<div className="flex flex-col ">
-					<p className="text-c2 font-semibold">
-						Pelatihan Simulasi Darurat Secara Berkala untuk Pawang Harimau.
-					</p>
-					<p className="text-c3 font-reguler">
-						Pegawai harus dilatih untuk menangani hewan dengan aman dan efektif
-						dalam situasi darurat
-					</p>
-				</div>
-			</div>
-
-			<p className="text-p2 font-semibold">Pilih Hewan yang Diperiksa</p>
-			<div className="flex flex-row flex-wrap gap-x-2 justify-between">
-				{species.map((s): React.ReactNode => {
-					return <CustomCard key={s.id} title={s.name} />;
-				})}
-			</div>
-
-			<footer>
-				<SheetHeader>
-					<div className="flex flex-row gap-4 justify-start items-center mb-5">
-						<Avatar className="h-10 w-10">
-							<AvatarImage src="https://github.com/shadcn.png" />
-							<AvatarFallback>CN</AvatarFallback>
-						</Avatar>
-						<p className="text-h5">Testing</p>
-					</div>
-				</SheetHeader>
-				<Separator className="mb-4" />
-				<h2 className="text-c1 font-medium mb-2">PT. ZooPort Makmur Tbk.</h2>
-				<p className="text-c2 font-reguler mb-2">
-					2401 N. Lincoln Blvd., Room 206 <br />
-					Jakarta Pusat, 73105
-				</p>
-				<h1 className="text-c1 font-medium mb-2">Contact Us</h1>
-				<div className="flex flex-row mb-5 gap-2">
-					<Facebook className="hover:cursor-pointer" />
-					<Twitter className="hover:cursor-pointer" />
-					<Instagram className="hover:cursor-pointer" />
-				</div>
-				<Separator className="mb-4" />
-			</footer>
 		</div>
 	);
 }

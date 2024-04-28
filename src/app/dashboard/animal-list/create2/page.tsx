@@ -3,9 +3,8 @@ import { Input } from "@/components/ui/input";
 import { CornerUpLeft } from "lucide-react";
 import { CalendarDays } from "lucide-react";
 import Link from "next/link";
-import FormAnimalTwo from "../create2/page";
 
-export default function FormAnimal() {
+export default function FormAnimalTwo() {
 	return (
 		<div className="w-full flex items-start">
 			<div className="w-[390px] h-[191px] bg-primary rounded-bl-[60px] rounded-br-[60px]">
@@ -28,48 +27,48 @@ export default function FormAnimal() {
 
 					<form className="mt-20">
 						<h1 className="text-p3 font-medium text-stone-900 mb-1">
-							Nama Hewan
+							Habitat Asli
 						</h1>
 						<Input
 							className="font-regular text-stone-900 text-c2 rounded-[10px] border border-stone-900 w-80 h-10 mb-2"
 							placeholder="Masukkan nama"
 						/>
 						<h1 className="text-p3 font-medium text-stone-900 mb-1">
-							Tempat Asal
-						</h1>
-						<Input
-							className="font-regular text-stone-900 text-c2 rounded-[10px] border border-stone-900 w-80 h-10 mb-2"
-							placeholder="Masukkan nama"
-						/>
-						<h1 className="text-p3 font-medium text-stone-900 mb-1">
-							Nama Panggilan
-						</h1>
-						<Input
-							className="font-regular text-stone-900 text-c2 rounded-[10px] border border-stone-900 w-80 h-10 mb-2"
-							placeholder="Masukkan nama panggilan hewan"
-						/>
-						<h1 className="text-p3 font-medium text-stone-900 mb-1">
-							Tanggal Lahir
+							Tanggal Masuk Kebun Binatang
 						</h1>
 						<Input
 							className="font-regular text-stone-900 text-c2 rounded-[10px] border border-stone-900 w-80 h-10 mb-2"
 							placeholder="Masukkan tanggal"
 						/>
 						<h1 className="text-p3 font-medium text-stone-900 mb-1">
-							Jenis Kelamin
+							Status Konservasi
 						</h1>
 						<Input
 							className="font-regular text-stone-900 text-c2 rounded-[10px] border border-stone-900 w-80 h-10 mb-2"
-							placeholder="Masukkan jenis kelamin"
+							placeholder="Masukkan nama"
+						/>
+						<h1 className="text-p3 font-medium text-stone-900 mb-1">
+							Deskripsi
+						</h1>
+						<Input
+							className="font-regular text-stone-900 text-c2 rounded-[10px] border border-stone-900 w-80 h-20 mb-2"
+							placeholder="Masukkan deskripsi"
+						/>
+						<h1 className="text-p3 font-medium text-stone-900 mb-1">
+							Masukkan foto hewan
+						</h1>
+						<Input
+							className="font-regular text-stone-900 text-c2 rounded-[10px] border border-stone-900 w-80 h-10 mb-2"
+							placeholder="No file choosen"
 						/>
 					</form>
 
 					<Link
-						href="/dashboard/animal-list/create2"
+						href="/"
 						className="border w-80 h-8 p-2 bg-primary rounded-[10px] justify-center items-center gap-2 inline-flex text-white mt-20  hover:bg-lime-700 text-xs font-semibold"
 					>
 						{" "}
-						Lanjut{" "}
+						Simpan{" "}
 					</Link>
 				</div>
 			</div>
