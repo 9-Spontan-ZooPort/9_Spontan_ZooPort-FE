@@ -7,7 +7,8 @@ export type User = {
 export type Species = {
 	id: string;
 	name: string;
-	class: string;
+	class?: string;
+	photo?: string;
 };
 
 export type Animal = {
