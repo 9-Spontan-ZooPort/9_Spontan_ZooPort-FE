@@ -1,42 +1,36 @@
-export const listHewan = [
+import type { Species } from "./types";
+
+export const listHewan: Species[] = [
 	{
-		image: "/Hewan(1).svg",
-		title: "Burung Hantu",
-		subTitle: "Eunectes murinus",
+		photo: "/Hewan(1).svg",
+		name: "Burung Hantu",
 	},
 	{
-		image: "/Hewan(8).svg",
-		title: "Harimau Putih",
-		subTitle: "Panthera tigris",
+		photo: "/Hewan(8).svg",
+		name: "Harimau Putih",
 	},
 	{
-		image: "/Hewan(7).svg",
-		title: "Beruang",
-		subTitle: "Paradisaeidae apoda",
+		photo: "/Hewan(7).svg",
+		name: "Beruang",
 	},
 	{
-		image: "/Hewan(4).svg",
-		title: "Monyet",
-		subTitle: "Elephas maximus",
+		photo: "/Hewan(4).svg",
+		name: "Monyet",
 	},
 	{
-		image: "/Hewan(5).svg",
-		title: "Kuda Nil",
-		subTitle: "Varanus komodoensis",
+		photo: "/Hewan(5).svg",
+		name: "Kuda Nil",
 	},
 	{
-		image: "/Hewan(6).svg",
-		title: "Kancil",
-		subTitle: "Conolophus subcristatus",
+		photo: "/Hewan(6).svg",
+		name: "Kancil",
 	},
 	{
-		image: "/Hewan(2).svg",
-		title: "Ular",
-		subTitle: "Serpentes ",
+		photo: "/Hewan(2).svg",
+		name: "Ular",
 	},
 	{
-		image: "/Hewan(3).svg",
-		title: "Serigala",
-		subTitle: "Canis lupus",
+		photo: "/Hewan(3).svg",
+		name: "Serigala",
 	},
 ];

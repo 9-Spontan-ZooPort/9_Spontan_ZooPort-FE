@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import CustomCard from "@/components/ui/customCard";
 import {
 	Dialog,
 	DialogContent,
@@ -35,6 +36,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { goDashboard, goHome } from "@/lib/actions";
+import { listHewan } from "@/lib/data";
 import type { Report } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { createReport } from "@/services/report";
@@ -50,6 +52,7 @@ import {
 	CornerUpRight,
 } from "lucide-react";
 import { Content } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import { type Dispatch, type SetStateAction, useState } from "react";
 import { type UseFormReturn, useForm } from "react-hook-form";
@@ -191,20 +194,29 @@ function Page({
 
 	function decrementIndex() {
 		if (index > 1) setIndex(index - 1);
-		else if (index === 1) goHome();
+		else if (index === 1) goDashboard();
 	}
 
 	return (
 		<>
 			<div>
 				<div className="px-9 pt-14 pb-5">
-					<Button
-						size="icon"
-						className="w-8 mb-5 bg-transparent hover:bg-transparent"
-						onClick={decrementIndex}
-					>
-						<CornerUpLeft className="w-full h-full" />
-					</Button>
+					<div className="flex flex-row items-center mb-5 justify-center">
+						<Button
+							size="icon"
+							className="w-8 bg-transparent hover:bg-transparent justify-center items-center p-0 m-0"
+							onClick={decrementIndex}
+						>
+							<CornerUpLeft className="w-full h-full" />
+						</Button>
+						<Image
+							src="/LogoZooPort1.svg"
+							alt="logo"
+							width={100}
+							height={50}
+							className="justify-center m-auto"
+						/>
+					</div>
 					<div className="flex flex-col">
 						{index !== 2 && (
 							<>
@@ -224,7 +236,7 @@ function Page({
 						)}
 					</div>
 				</div>
-				<div className="bg-neutral-100 w-full rounded-t-[60px]">
+				<div className="bg-primary w-full rounded-t-[60px]">
 					<div className="px-9 py-8 ">
 						<div className="flex flex-row items-center justify-between w-full">
 							{Array.from({ length: 3 }).map((_, i) => (
@@ -233,28 +245,28 @@ function Page({
 									<div
 										className={`h-7 w-7 rounded-full flex justify-center items-center ${
 											i + 1 <= index
-												? "bg-neutral-400"
-												: "bg-transparent border-2 border-neutral-400"
+												? "bg-accent text-primary"
+												: "bg-transparent border-2 border-accent text-accent"
 										}`}
 									>
 										{i + 1 < index ? (
-											<Check className="h-5 w-7" />
+											<Check className="h-5 w-7" color="#4F6041" />
 										) : (
 											<p className="font-c1 text-medium">{i + 1}</p>
 										)}
 									</div>
-									<ChevronRightIcon strokeWidth={0.5} />
+									<ChevronRightIcon strokeWidth={0.5} color="#D0E6B2" />
 								</>
 							))}
 							<div
 								className={`h-7 w-7 rounded-full flex justify-center items-center ${
 									5 <= index
-										? "bg-neutral-400"
-										: "bg-transparent border-2 border-neutral-400"
+										? "bg-accent text-primary"
+										: "bg-transparent border-2 border-accent text-accent"
 								}`}
 							>
 								{4 < index ? (
-									<Check className="h-5 w-7" />
+									<Check className="h-5 w-7" color="#4F6041" />
 								) : (
 									<p className="font-c1 text-medium">4</p>
 								)}
@@ -272,28 +284,19 @@ function Page({
 													<FormItem>
 														<FormControl>
 															<div className="flex flex-row flex-wrap w-full justify-between gap-y-7">
-																{Array.from({ length: 9 }).map((_, i) => (
-																	// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-																	<div
-																		// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-																		key={i}
-																		className="h-fit w-32 flex flex-col p-2 gap-2 bg-neutral-600 rounded-lg hover:cursor-pointer"
-																		onClick={() => {
-																			setIndex(index + 1);
-																			form.setValue("spesies", i.toString());
-																		}}
-																	>
-																		<div className="h-28 w-full bg-neutral-400 rounded-md" />
-																		<div className="flex flex-col">
-																			<p className="text-p3 font-semibold">
-																				Nama Spesies
-																			</p>
-																			<p className="text-c3 font-regular">
-																				Nama Latin
-																			</p>
-																		</div>
-																	</div>
-																))}
+																{listHewan.map((s): React.ReactNode => {
+																	return (
+																		<CustomCard
+																			onClick={() => {
+																				setIndex(index + 1);
+																				form.setValue("spesies", s.name);
+																			}}
+																			key={s.id}
+																			title={s.name}
+																			image={s.photo}
+																		/>
+																	);
+																})}
 															</div>
 														</FormControl>
 														<FormMessage />
@@ -311,28 +314,19 @@ function Page({
 													<FormItem>
 														<FormControl>
 															<div className="flex flex-row flex-wrap w-full justify-between gap-y-7">
-																{Array.from({ length: 9 }).map((_, i) => (
-																	// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-																	<div
-																		// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-																		key={i}
-																		className="h-fit w-32 flex flex-col p-2 gap-2 bg-neutral-600 rounded-lg hover:cursor-pointer"
-																		onClick={() => {
-																			setIndex(index + 1);
-																			form.setValue("animal_id", i.toString());
-																		}}
-																	>
-																		<div className="h-28 w-full bg-neutral-400 rounded-md" />
-																		<div className="flex flex-col">
-																			<p className="text-p3 font-semibold">
-																				Nama Hewan
-																			</p>
-																			<p className="text-c3 font-regular">
-																				Nama Latin
-																			</p>
-																		</div>
-																	</div>
-																))}
+																{listHewan.map((s): React.ReactNode => {
+																	return (
+																		<CustomCard
+																			onClick={() => {
+																				setIndex(index + 1);
+																				form.setValue("animal_id", s.id);
+																			}}
+																			key={s.id}
+																			title={s.name}
+																			image={s.photo}
+																		/>
+																	);
+																})}
 															</div>
 														</FormControl>
 														<FormMessage />
@@ -349,7 +343,7 @@ function Page({
 												render={({ field }) => {
 													return (
 														<FormItem>
-															<FormLabel className="text-p3 font-medium">
+															<FormLabel className="text-p3 font-medium text-accent">
 																Deskripsikan masalah kesehatan yang dialami oleh
 																hewan tersebut!
 															</FormLabel>
@@ -375,11 +369,11 @@ function Page({
 												render={({ field }) => {
 													return (
 														<FormItem>
-															<FormLabel className="text-p3 font-medium">
+															<FormLabel className="text-p3 font-medium text-accent">
 																Berdasarkan hasil perkiraan Anda, kondisi apa
 																yang dialami oleh hewan pada saat ini?
 															</FormLabel>
-															<FormControl>
+															<FormControl className="text-accent">
 																<RadioGroup
 																	onValueChange={field.onChange}
 																	defaultValue={field.value}
@@ -430,7 +424,7 @@ function Page({
 												render={({ field }) => {
 													return (
 														<FormItem>
-															<FormLabel className="text-p3 font-medium">
+															<FormLabel className="text-p3 font-medium text-accent">
 																Masukkan bukti foto untuk memperkirakan status
 																kesehatan hewan tersebut
 															</FormLabel>
@@ -452,7 +446,7 @@ function Page({
 									{index === 3 && (
 										<Button
 											variant="outline"
-											className="w-full mt-10 mb-12"
+											className="w-full mt-10 mb-12 bg-accent"
 											onClick={incrementIndex}
 										>
 											<p className="text-c1 font-medium">Lanjut</p>
@@ -463,7 +457,7 @@ function Page({
 											<DialogTrigger className="w-full">
 												<Button
 													variant="outline"
-													className="w-full mt-10 mb-12"
+													className="w-full mt-10 mb-12 bg-accent"
 													type="submit"
 												>
 													<p className="text-c1 font-medium">Kirim</p>
@@ -476,8 +470,11 @@ function Page({
 														Terima kasih! Data telah dikirimkan!
 													</p>
 												</div>
-												<Button variant="outline" className="w-full mt-10">
-													<Link href="/">
+												<Button
+													variant="outline"
+													className="w-full mt-10 bg-accent"
+												>
+													<Link href="/dashboard">
 														<p className="text-c1 font-medium">Dashboard</p>
 													</Link>
 												</Button>
