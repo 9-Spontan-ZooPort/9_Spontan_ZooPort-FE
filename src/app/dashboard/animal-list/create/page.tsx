@@ -48,7 +48,7 @@ const steps: StepProp[] = [
 	{
 		index: 1,
 		title: "Tambahkan Jenis Satwa!",
-		description: "Lengkapi nama dan jenis satwa yang akan didaftarkan",
+		description: "Lengkapi jenis satwa yang akan didaftarkan",
 	},
 	{
 		index: 2,
@@ -183,7 +183,7 @@ function Page({
 	}
 
 	return (
-		<div className="w-full flex flex-col h-full gap-8 ">
+		<div className="w-full flex flex-col h-full gap-10 ">
 			<div className="w-full flex flex-col flex-wrap">
 				<h1 className="text-accent text-h7 font-semibold">{step.title}</h1>
 				<p className="text-p3 text-accent">{step.description}</p>
@@ -482,7 +482,7 @@ function Page({
 					{index === 1 && (
 						<Button
 							variant="outline"
-							className="w-full mt-10 10 mb-12"
+							className="w-full mt-10 10 mb-12 bg-primary text-accent"
 							onClick={incrementIndex}
 						>
 							<p className="text-c1 font-medium">Lanjut</p>
@@ -494,7 +494,7 @@ function Page({
 							<DialogTrigger className="w-full ">
 								<Button
 									variant="outline"
-									className="w-full mt-10 mb-12"
+									className="w-full mt-10 mb-12 bg-primary text-accent"
 									type="submit"
 								>
 									<p className="text-c1 font-medium">Simpan</p>
@@ -507,7 +507,10 @@ function Page({
 										Terima kasih! Data telah disimpan!
 									</p>
 								</div>
-								<Button variant="outline" className="w-full mt-">
+								<Button
+									variant="outline"
+									className="w-full bg-primary text-accent"
+								>
 									<Link href="/dashboard">
 										<p className="text-c1 font-medium">Dashboard</p>
 									</Link>

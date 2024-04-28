@@ -23,6 +23,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import CustomCard from "@/components/ui/customCard";
 import { Separator } from "@/components/ui/separator";
 import { goHome } from "@/lib/actions";
+import { listHewan } from "@/lib/data";
 import { decodeJwt } from "@/lib/jwt";
 import { getItem } from "@/lib/localStorage";
 import type { Species, User } from "@/lib/types";
@@ -44,10 +45,11 @@ import Link from "next/link";
 import logout from "./logout";
 
 export default async function Dashboard() {
-	const species: Species[] = await getSpecies();
+	let species: Species[] = await getSpecies();
+	species = species.concat(listHewan).slice(2, 6);
 
 	return (
-		<div className="flex flex-col gap-4 w-full px-9 py-14">
+		<div className="flex flex-col gap-4 w-full px-9 pt-14">
 			<div className="w-full flex flex-row justify-between ">
 				<Sheet>
 					<SheetTrigger asChild>
@@ -58,11 +60,7 @@ export default async function Dashboard() {
 					<SheetContent side="left" className="pt-14">
 						<SheetHeader>
 							<div className="flex flex-row gap-4 justify-start items-center">
-								<Avatar className="h-10 w-10">
-									<AvatarImage src="https://github.com/shadcn.png" />
-									<AvatarFallback>CN</AvatarFallback>
-								</Avatar>
-								<p className="text-h5">Testing</p>
+								<img src="/LogoZooPort3.svg" alt="CN" className="mt-3" />
 							</div>
 						</SheetHeader>
 						<div className="flex flex-col pt-10">
@@ -168,7 +166,7 @@ export default async function Dashboard() {
 			<div className="flex flex-row gap-4 justify-between">
 				<Link href="/dashboard/animal-report">
 					<div className="flex flex-col gap-2 justify-center items-center">
-						<div className="p-2 bg-neutral-400 rounded-sm h-16 w-16 flex justify-center items-center">
+						<div className="p-2 bg-accent rounded-sm h-16 w-16 flex justify-center items-center">
 							<PawPrint className="h-10 w-10" />
 						</div>
 						<p className="text-c2 font-medium">Animal Check</p>
@@ -176,7 +174,7 @@ export default async function Dashboard() {
 				</Link>
 				<Link href="/dashboard/animal-list">
 					<div className="flex flex-col gap-2 justify-center items-center">
-						<div className="p-2 bg-neutral-400 rounded-sm h-16 w-16 flex justify-center items-center">
+						<div className="p-2 bg-accent rounded-sm h-16 w-16 flex justify-center items-center">
 							<FileCheck2 className="h-10 w-10" />
 						</div>
 						<p className="text-c2 font-medium">Animal List</p>
@@ -184,7 +182,7 @@ export default async function Dashboard() {
 				</Link>
 				<Link href="/dashboard/report">
 					<div className="flex flex-col gap-2 justify-center items-center">
-						<div className="p-2 bg-neutral-400 rounded-sm h-16 w-16 flex justify-center items-center">
+						<div className="p-2 bg-accent rounded-sm h-16 w-16 flex justify-center items-center">
 							<ClipboardList className="h-10 w-10" />
 						</div>
 						<p className="text-c2 font-medium">Report</p>
@@ -193,7 +191,7 @@ export default async function Dashboard() {
 			</div>
 
 			<p className="text-p2 font-semibold">Pengamanan dan Prosedur Darurat</p>
-			<div className="flex flex-row gap-4 p-2 bg-neutral-300 rounded-md">
+			<div className="flex flex-row gap-4 p-2 bg-accent rounded-md">
 				<Image
 					src="/dummy_poster.png"
 					alt="Banner"
@@ -215,18 +213,14 @@ export default async function Dashboard() {
 			<p className="text-p2 font-semibold">Pilih Hewan yang Diperiksa</p>
 			<div className="flex flex-row flex-wrap gap-x-2 justify-between">
 				{species.map((s): React.ReactNode => {
-					return <CustomCard key={s.id} title={s.name} />;
+					return <CustomCard key={s.id} title={s.name} image={s.photo} />;
 				})}
 			</div>
 
-			<footer>
+			<footer className="bg-accent px-4 rounded-t-md">
 				<SheetHeader>
 					<div className="flex flex-row gap-4 justify-start items-center mb-5">
-						<Avatar className="h-10 w-10">
-							<AvatarImage src="https://github.com/shadcn.png" />
-							<AvatarFallback>CN</AvatarFallback>
-						</Avatar>
-						<p className="text-h5">Testing</p>
+						<img src="/LogoZooPort3.svg" alt="CN" className="mt-3" />
 					</div>
 				</SheetHeader>
 				<Separator className="mb-4" />
